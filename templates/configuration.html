@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Configuration Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+        <a href="/changes">Changes</a>
+        <a href="/configuration">Configuration</a>
+        <a href="/versions">Versions</a>
+        <a href="/releases">Releases</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <h1>Configuration Items</h1>
+
+    <table>
+
+        <tr>
+            <th>CI ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Version</th>
+            <th>Owner</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>CI-001</td>
+            <td>login.html</td>
+            <td>Source Code</td>
+            <td>1.2</td>
+            <td>Developer</td>
+            <td>Controlled</td>
+        </tr>
+
+        <tr>
+            <td>CI-002</td>
+            <td>test_cases.xlsx</td>
+            <td>Test Document</td>
+            <td>1.0</td>
+            <td>Tester</td>
+            <td>Controlled</td>
+        </tr>
+
+        <tr>
+            <td>CI-003</td>
+            <td>database.sql</td>
+            <td>Database</td>
+            <td>2.0</td>
+            <td>Developer</td>
+            <td>Controlled</td>
+        </tr>
+
+    </table>
+
+</main>
+
+</body>
+</html>

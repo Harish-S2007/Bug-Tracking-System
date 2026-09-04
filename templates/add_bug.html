@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Report Bug</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <div class="form-box">
+
+        <h1>Report New Bug</h1>
+
+        <form method="POST">
+
+            <label>Bug Title</label>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter bug title"
+                required>
+
+
+            <label>Description</label>
+
+            <textarea
+                name="description"
+                placeholder="Describe the bug"
+                required></textarea>
+
+
+            <label>Priority</label>
+
+            <select name="priority">
+
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
+
+            </select>
+
+
+            <label>Severity</label>
+
+            <select name="severity">
+
+                <option>Minor</option>
+                <option>Major</option>
+                <option>Critical</option>
+
+            </select>
+
+
+            <label>Assign To</label>
+
+            <input
+                type="text"
+                name="assigned_to"
+                placeholder="Developer name"
+                required>
+
+
+            <button type="submit">
+                Submit Bug
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+</html>

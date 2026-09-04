@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard - BugTrack SCM</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+        <a href="/changes">Changes</a>
+        <a href="/configuration">Configuration</a>
+        <a href="/versions">Versions</a>
+        <a href="/releases">Releases</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <h1>Dashboard</h1>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Bugs</h3>
+            <p>{{ total_bugs }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Open Bugs</h3>
+            <p>{{ open_bugs }}</p>
+        </div>
+
+        <div class="card">
+            <h3>In Progress</h3>
+            <p>{{ progress_bugs }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Closed</h3>
+            <p>{{ closed_bugs }}</p>
+        </div>
+
+    </div>
+
+    <div class="quick-actions">
+
+        <h2>Quick Actions</h2>
+
+        <a href="/add_bug" class="btn">Report New Bug</a>
+
+        <a href="/changes" class="btn">View Changes</a>
+
+        <a href="/configuration" class="btn">Configuration Items</a>
+
+    </div>
+
+</main>
+
+</body>
+</html>

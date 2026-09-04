@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Version Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+        <a href="/changes">Changes</a>
+        <a href="/configuration">Configuration</a>
+        <a href="/versions">Versions</a>
+        <a href="/releases">Releases</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <h1>Version Management</h1>
+
+    <table>
+
+        <tr>
+            <th>Version</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>v1.0</td>
+            <td>Initial release</td>
+            <td>Released</td>
+        </tr>
+
+        <tr>
+            <td>v1.1</td>
+            <td>Bug fixes and improvements</td>
+            <td>Released</td>
+        </tr>
+
+        <tr>
+            <td>v1.2</td>
+            <td>New features</td>
+            <td>Development</td>
+        </tr>
+
+    </table>
+
+</main>
+
+</body>
+</html>

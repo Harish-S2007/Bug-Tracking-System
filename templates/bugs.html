@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Bug Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+        <a href="/changes">Changes</a>
+        <a href="/configuration">Configuration</a>
+        <a href="/versions">Versions</a>
+        <a href="/releases">Releases</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <div class="page-header">
+
+        <h1>Bug Management</h1>
+
+        <a href="/add_bug" class="btn">
+            + Report Bug
+        </a>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Update</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for bug in bugs %}
+
+            <tr>
+
+                <td>BUG-{{ bug["id"] }}</td>
+
+                <td>{{ bug["title"] }}</td>
+
+                <td>{{ bug["priority"] }}</td>
+
+                <td>{{ bug["severity"] }}</td>
+
+                <td>{{ bug["status"] }}</td>
+
+                <td>{{ bug["assigned_to"] }}</td>
+
+                <td>
+
+                    <form
+                        action="/update_bug/{{ bug['id'] }}"
+                        method="POST">
+
+                        <select name="status">
+
+                            <option>Open</option>
+
+                            <option>Assigned</option>
+
+                            <option>In Progress</option>
+
+                            <option>Fixed</option>
+
+                            <option>Testing</option>
+
+                            <option>Closed</option>
+
+                        </select>
+
+                        <button type="submit">
+                            Update
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</main>
+
+</body>
+</html>

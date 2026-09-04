@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Change Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">BugTrack SCM</div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/bugs">Bugs</a>
+        <a href="/changes">Changes</a>
+        <a href="/configuration">Configuration</a>
+        <a href="/versions">Versions</a>
+        <a href="/releases">Releases</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <h1>Change Request Management</h1>
+
+    <button class="btn" onclick="showMessage()">
+        + Create Change Request
+    </button>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>Change ID</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>CR-001</td>
+                <td>Add payment gateway</td>
+                <td>High</td>
+                <td>Approved</td>
+            </tr>
+
+            <tr>
+                <td>CR-002</td>
+                <td>Improve login security</td>
+                <td>Medium</td>
+                <td>Under Review</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
