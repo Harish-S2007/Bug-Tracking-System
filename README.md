@@ -68,17 +68,3 @@ bug-tracking-scm/
 ├── static/
 ├── database/
 └── tests/
-
-## How to Run
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run the application:
-
-python app.py
-
-Open the browser:
-
-http://127.0.0.1:5000
