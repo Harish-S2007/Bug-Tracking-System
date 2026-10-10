@@ -1,7 +1,3 @@
-function showMessage() {
-
-    alert(
-        "Change Request module is ready for implementation."
-    );
-
+function openChangeRequestForm() {
+    document.getElementById("changeRequestForm").style.display="block";
 }

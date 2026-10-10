@@ -1,72 +1,418 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>Change Management</title>
+    <meta charset="UTF-8">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Change Request Management</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2563eb;
+            color: white;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .under-review {
+            color: #d97706;
+        }
+
+        .approved {
+            color: #15803d;
+        }
+
+        .rejected {
+            color: #dc2626;
+        }
+
+        .implemented {
+            color: #2563eb;
+        }
+
+        .closed {
+            color: #16a34a;
+        }
+
+        .action-form {
+            margin: 0;
+        }
+
+        .action-form select {
+            width: auto;
+            display: inline-block;
+            padding: 7px;
+        }
+
+        .action-form button {
+            margin-top: 5px;
+            padding: 7px 12px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2563eb;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<header>
+<div class="container">
 
-    <div class="logo">BugTrack SCM</div>
-
-    <nav>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/bugs">Bugs</a>
-        <a href="/changes">Changes</a>
-        <a href="/configuration">Configuration</a>
-        <a href="/versions">Versions</a>
-        <a href="/releases">Releases</a>
-    </nav>
-
-</header>
-
-<main class="container">
+    <a href="/dashboard" class="back">
+        ← Back to Dashboard
+    </a>
 
     <h1>Change Request Management</h1>
 
-    <button class="btn" onclick="showMessage()">
-        + Create Change Request
-    </button>
 
-    <div class="table-container">
+    <!-- ==========================================
+         CREATE CHANGE REQUEST
+         ========================================== -->
 
-        <table>
+    <div class="card">
 
-            <tr>
-                <th>Change ID</th>
-                <th>Description</th>
-                <th>Priority</th>
-                <th>Status</th>
-            </tr>
+        <h2>Create Change Request</h2>
 
-            <tr>
-                <td>CR-001</td>
-                <td>Add payment gateway</td>
-                <td>High</td>
-                <td>Approved</td>
-            </tr>
+        <form action="/create_change" method="POST">
 
-            <tr>
-                <td>CR-002</td>
-                <td>Improve login security</td>
-                <td>Medium</td>
-                <td>Under Review</td>
-            </tr>
+            <label for="title">
+                Change Title
+            </label>
 
-        </table>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter change request title"
+                required
+            >
+
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Describe the proposed change"
+                required
+            ></textarea>
+
+
+            <label for="reason">
+                Reason for Change
+            </label>
+
+            <textarea
+                id="reason"
+                name="reason"
+                placeholder="Why is this change required?"
+                required
+            ></textarea>
+
+
+            <label for="priority">
+                Priority
+            </label>
+
+            <select
+                id="priority"
+                name="priority"
+                required
+            >
+
+                <option value="">Select Priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+
+            </select>
+
+
+            <label for="requested_by">
+                Requested By
+            </label>
+
+            <input
+                type="text"
+                id="requested_by"
+                name="requested_by"
+                placeholder="Enter requester name"
+                required
+            >
+
+
+            <button type="submit">
+                Create Change Request
+            </button>
+
+        </form>
 
     </div>
 
-</main>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- ==========================================
+         CHANGE REQUEST LIST
+         ========================================== -->
+
+    <div class="card">
+
+        <h2>Change Requests</h2>
+
+        {% if change_requests %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Title</th>
+
+                    <th>Description</th>
+
+                    <th>Reason</th>
+
+                    <th>Priority</th>
+
+                    <th>Requested By</th>
+
+                    <th>Status</th>
+
+                    <th>Update Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for change in change_requests %}
+
+                <tr>
+
+                    <td>
+                        CR-{{ change["id"] }}
+                    </td>
+
+                    <td>
+                        {{ change["title"] }}
+                    </td>
+
+                    <td>
+                        {{ change["description"] }}
+                    </td>
+
+                    <td>
+                        {{ change["reason"] }}
+                    </td>
+
+                    <td>
+                        {{ change["priority"] }}
+                    </td>
+
+                    <td>
+                        {{ change["requested_by"] }}
+                    </td>
+
+                    <td class="status">
+
+                        {% if change["status"] == "Under Review" %}
+
+                            <span class="under-review">
+                                Under Review
+                            </span>
+
+                        {% elif change["status"] == "Approved" %}
+
+                            <span class="approved">
+                                Approved
+                            </span>
+
+                        {% elif change["status"] == "Rejected" %}
+
+                            <span class="rejected">
+                                Rejected
+                            </span>
+
+                        {% elif change["status"] == "Implemented" %}
+
+                            <span class="implemented">
+                                Implemented
+                            </span>
+
+                        {% elif change["status"] == "Closed" %}
+
+                            <span class="closed">
+                                Closed
+                            </span>
+
+                        {% else %}
+
+                            {{ change["status"] }}
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        <form
+                            action="/update_change/{{ change['id'] }}"
+                            method="POST"
+                            class="action-form"
+                        >
+
+                            <select name="status">
+
+                                <option value="Under Review">
+                                    Under Review
+                                </option>
+
+                                <option value="Approved">
+                                    Approved
+                                </option>
+
+                                <option value="Rejected">
+                                    Rejected
+                                </option>
+
+                                <option value="Implemented">
+                                    Implemented
+                                </option>
+
+                                <option value="Closed">
+                                    Closed
+                                </option>
+
+                            </select>
+
+                            <button type="submit">
+                                Update
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p>
+            No change requests have been created yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
 
 </body>
+
 </html>
